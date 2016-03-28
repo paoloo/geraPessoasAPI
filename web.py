@@ -2,6 +2,7 @@
 
 from bottle import Bottle, response
 import core
+import json
 
 class srv:
   def __init__(self, host='', porta=8080):
@@ -24,7 +25,7 @@ class srv:
     for i in range(int(qtd)):
       _temp.append(self._g.gerapessoa())
     _dd = {'pessoas':_temp}
-    return _dd
+    return json.dumps(_dd)
 
 if __name__=='__main__':
   s=srv().go()
