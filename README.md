@@ -1,16 +1,16 @@
 # geraPessoasAPI
 
-### API geradora de dados pessoas ficticios randomicos para cadastros e testes
+### API geradora de dados pessoas fictícios randômicos para cadastros e testes
 
-Trata-se de uma API para gerar dados pessoais falsos porem consistentes, para uso
+Trata-se de uma API para gerar dados pessoais falsos porém consistentes, para uso
 em cadastros ou gerar dados para popular um banco-teste, conforme um algoritmo
 descrito e implementado no meu blog em 2011
 ( encontrado em: http://paoloo.wordpress.com/2011/01/10/gerador-de-dados-pessoais/ ).
 O valor retornado é um JSON contendo um array de identidades falsas.
 
 ### Requisitos
-- python 2.7
-- bottle ( bottlepy.org - mas ja vai embarcado)
+- python 3
+- bottle (bottlepy.org - mas já vai embarcado)
 
 
 ### Uso
@@ -34,7 +34,7 @@ http://localhost:8080/pessoas/n
 para gerar **n** pessoas.
 
 
-### Exemplo da saida JSON
+### Exemplo da saída JSON
 ```
 {
 	"pessoas": [{

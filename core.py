@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from random import randint, uniform
-from string import lower, upper
+import string
 from math import sqrt
 
 alfanum = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -90,7 +90,7 @@ lsDDD = {
 def calcCPF(num):
   somatorio = 0
   qtde = (len(num)+1)
-  for i in xrange(qtde-1):
+  for i in range(qtde-1):
     somatorio += (num[i]*(qtde-i))
   resto = 11-(somatorio % 11)
   if resto < 10: return resto
@@ -98,13 +98,13 @@ def calcCPF(num):
 
 
 def getCPF():
-  n = [randint(0,9) for i in xrange(9)]
+  n = [randint(0,9) for i in range(9)]
   n.append(calcCPF(n))
   n.append(calcCPF(n))
   n.insert(3,'.')
   n.insert(7,'.')
   n.insert(11,'-')
-  mm = ''.join([str(n[j]) for j in xrange(14)])
+  mm = ''.join([str(n[j]) for j in range(14)])
   return mm
 
 def calcCC(num):
@@ -119,13 +119,13 @@ def calcCC(num):
   else: return (10-(somatorio%10))
 
 def getCC():
-  n = [randint(0,9) for i in xrange(15)]
+  n = [randint(0,9) for i in range(15)]
   n[0] = randint(3,6)
   n.append(calcCC(n))
   n.insert(4,'.')
   n.insert(9,'.')
   n.insert(14,'.')
-  mm = ''.join([str(n[j]) for j in xrange(19)])
+  mm = ''.join([str(n[j]) for j in range(19)])
   return mm
 
 def genrg():
@@ -140,25 +140,25 @@ def genrg():
 def gerapessoa():
   genero = randint(0,1)
   ddd=slDDD[randint(0,len(slDDD)-1)]
-  _nomec = '%s %s' % ( ' '.join([nomes[genero][randint(0 ,len(nomes[genero])-1)] for k in xrange(randint(1,2))]) , ' '.join([sobrenomes[randint(0,len(sobrenomes)-1)] for k in xrange(randint(1,3))]) )
+  _nomec = '%s %s' % ( ' '.join([nomes[genero][randint(0 ,len(nomes[genero])-1)] for k in range(randint(1,2))]) , ' '.join([sobrenomes[randint(0,len(sobrenomes)-1)] for k in range(randint(1,3))]) )
   _logradouro = '%s %s %s %s, %s' % ( logradouro[randint(0,len(logradouro)-1)],ruas[randint(0,len(ruas)-1)],nomes[0][randint(0,len(nomes[0])-1)],sobrenomes[randint(0,len(sobrenomes)-1)], str(randint(1,999)) )
-  cep = [str(randint(0,9)) for k in xrange(8)]
+  cep = [str(randint(0,9)) for k in range(8)]
   cep.insert(2,'.')
   cep.insert(6,'-')
-  _cidade = (upper(lsDDD[ddd][1]))
+  _cidade = ((lsDDD[ddd][1]).upper())
   _uf = lsDDD[ddd][0]
   _cep = ''.join(cep)
-  _fone = '(%s)%s-%s' % (ddd,''.join([str(randint(0,9)) for k in xrange(4)]),''.join([str(randint(0,9)) for k in xrange(4)]))
+  _fone = '(%s)%s-%s' % (ddd,''.join([str(randint(0,9)) for k in range(4)]),''.join([str(randint(0,9)) for k in range(4)]))
   _sexo = sexo[genero]
   _cpf = getCPF()
   _rg = '%s SSP %s' % (genrg(),lsDDD[ddd][0])
   _dt_nasc = '%02d/%02d/%d' % (randint(1,30),randint(1,12),randint(1930,2005))
   _vencimentocc = '%02d/%d' % (randint(1,12),randint(2016,2025))
-  _mae = '%s %s' % ( ' '.join([nomes[1][randint(0 ,len(nomes[1])-1)] for k in xrange(randint(1,2))]) , ' '.join([sobrenomes[randint(0,len(sobrenomes)-1)] for k in xrange(randint(1,3))]) )
+  _mae = '%s %s' % ( ' '.join([nomes[1][randint(0 ,len(nomes[1])-1)] for k in range(randint(1,2))]) , ' '.join([sobrenomes[randint(0,len(sobrenomes)-1)] for k in range(randint(1,3))]) )
   _sangue = '%s%s' % (sangueT[randint(0,len(sangueT)-1)],sangueF[randint(0,1)])
   zimeiu = _nomec.split(' ')
-  _email = lower('%s%s%s@%s') % (zimeiu[0],emailsep[randint(0,len(emailsep)-1)],''.join([zimeiu[k][0] for k in range(1,len(zimeiu))]),email[randint(0,len(email)-1)])
-  _senha = '%s' % ''.join([alfanum[randint(0,len(alfanum)-1)] for k in xrange(randint(4,21))])
+  _email = ('%s%s%s@%s').lower() % (zimeiu[0],emailsep[randint(0,len(emailsep)-1)],''.join([zimeiu[k][0] for k in range(1,len(zimeiu))]),email[randint(0,len(email)-1)])
+  _senha = '%s' % ''.join([alfanum[randint(0,len(alfanum)-1)] for k in range(randint(4,21))])
   _cc = '%s' % getCC()
   _cvv = '%d' % randint(100,999)
   imc = uniform(19,29)
@@ -171,4 +171,4 @@ def gerapessoa():
           'sangue':_sangue,'email':_email,'senha':_senha,'cartao de credito': {'numero': _cc, 'cvv': _cvv, 'validade':_vencimentocc }, 'peso': _peso, 'altura':_altura, 'emprego':_emprego}
 
 if __name__ == '__main__':
-  print gerapessoa()
+  print(gerapessoa())
